@@ -11,6 +11,8 @@ import routes from 'lib/api/routes';
 const { host, port } = config;
 const app = express();
 
+app.use('/statics/', express.static(__dirname + '/config/img'));
+
 app.use(morgan('combined', { stream: logger.stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
