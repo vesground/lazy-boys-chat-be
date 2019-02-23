@@ -6,7 +6,9 @@
   "scripts": {
     "start": "babel-node server.js --source-maps",
     "start:prosuction": "pm2 start run.js --source-map-support --watch",
-    "start:development": "nodemon --exec babel-node run.js"
+    "start:development": "nodemon --exec babel-node run.js --config .nodemonrc",
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill 'test/**/*.js'",
+    "test:development": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill --watch --watch-extensions js 'test/**/*.js' --no-deprecation"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +17,9 @@
     "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.1.2",
     "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
     "express": "^4.16.4",
+    "mocha": "^5.2.0",
     "moment": "^2.23.0",
     "path": "^0.12.7",
     "redis": "^2.8.0"
@@ -26,6 +30,9 @@
     "is-url": "^1.2.4",
     "livr": "^2.2.2",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.3.0",
+    "parse-error": "^0.2.0",
+    "query-string": "^6.2.0",
     "source-map-support": "^0.5.10",
     "uuid": "^3.3.2",
     "winston": "^3.1.0"
