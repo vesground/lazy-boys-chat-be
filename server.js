@@ -1,13 +1,12 @@
 import express from 'express';
 import path from 'path';
-import redis from 'redis';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
 import config from 'config/config.json';
 import logger from 'config/logger.js'
 import routes from 'lib/api/routes';
-import { InternalError } from 'lib/api/services/Exception';
+import { InternalErrorCreator } from 'lib/Exception';
 
 const { host, port } = config;
 const app = express();
@@ -23,10 +22,16 @@ app.use(function timeLog(req, res, next) {
   next();
 });
 
+// TODO: write parser for params
+// app.use((req, res, next) => {
+//   console.log('req.params', req.params);
+//   next();
+// })
+
 app.use('/api/v1', routes);
 
 app.use(function(error, req, res, next) {
-  res.json(new InternalError(error));
+  res.json(InternalErrorCreator(error));
 });
 
 app.listen(port, host);
