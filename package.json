@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "babel-node server.js --source-maps",
-    "start:prosuction": "pm2 start run.js --source-map-support --watch",
-    "start:development": "nodemon --exec babel-node run.js --config .nodemonrc",
-    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill 'test/**/*.js'",
-    "test:development": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill --watch --watch-extensions js 'test/**/*.js' --no-deprecation"
+    "server:production": "pm2 start run.js --source-map-support --watch",
+    "server:development": "DB=${db:-development} nodemon --exec babel-node run.js --config .nodemonrcs",
+    "test": "env NODE_ENV=test ./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill 'test/run.js'",
+    "test:development": "env NODE_ENV=test ./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill --watch --watch-extensions js 'test/**/*.js' --no-deprecation"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,7 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "is-url": "^1.2.4",
     "livr": "^2.2.2",
     "morgan": "^1.9.1",

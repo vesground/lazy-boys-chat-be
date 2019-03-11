@@ -13,7 +13,7 @@ const options = {
     colorize: false,
   },
   console: {
-    level: 'error',
+    level: 'info',
     handleExceptions: true,
     json: false,
     colorize: true,
@@ -40,7 +40,7 @@ const logger = createLogger({
 logger.stream = {
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
-    logger.info(message);
+    // logger.info(message);
   },
 };
 

@@ -1,0 +1,13 @@
+const { PORT, NODE_ENV } = process.env;
+
+const redisDBs = {
+  production: 0,
+  development: 1,
+  test: 2,
+}
+
+export default {
+  host: 'localhost',
+  port: PORT || 9000,
+  redisDB: redisDBs[NODE_ENV] || redisDBs[development],
+}
